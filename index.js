@@ -11,25 +11,24 @@ function listLogFiles() {
   console.log(`bucket name: ${bucketName}`)
   const bucket = storage.bucket(bucketName)
   console.log(`bucket: ${bucket.constructor.name}`)
-  bucket.exists().then(function(data) {
-    console.log("YAY! NOt insane")
+  return bucket.exists().then(function(data) {
+    return bucket.getFiles(function(err, files) {
+      if (!err) {
+        console.log(files)
+
+        console.log('Files:');
+        files.forEach(file => {
+          console.log(file.name)
+        });
+        return files
+        // files is an array of File objects.
+      } else {
+        console.log(`errors: ${errors}`)
+      }
+    })
   });
-
-  const files = bucket.getFiles(function(err, files) {
-    if (!err) {
-      console.log(files)
-
-      console.log('Files:');
-      files.forEach(file => {
-        console.log(file.name)
-      });
-      // files is an array of File objects.
-    } else {
-      console.log(`errors: ${errors}`)
-    }
-  })
 }
 
 exports.loadLogs = (request, response) => {
-  listLogFiles().catch(console.error)
+  const files = listLogFiles()
 };
