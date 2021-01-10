@@ -21,7 +21,7 @@ exports.loadLogs = (request, response) => {
 
   const files = listLogFiles()
 
-  console.log('Files:');
+  console.log(`Files: ${files}`);
   files.forEach(file => {
     console.log(file.name)
   });
