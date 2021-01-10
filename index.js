@@ -14,14 +14,7 @@ function listLogFiles() {
   return bucket.exists().then(function(data) {
     return bucket.getFiles(function(err, files) {
       if (!err) {
-        console.log(files)
-
-        console.log('Files:');
-        files.forEach(file => {
-          console.log(file.name)
-        });
         return files
-        // files is an array of File objects.
       } else {
         console.log(`errors: ${errors}`)
       }
@@ -30,5 +23,14 @@ function listLogFiles() {
 }
 
 exports.loadLogs = (request, response) => {
+
   const files = listLogFiles()
+
+  console.log('Files:');
+  files.forEach(file => {
+    console.log(file.name)
+  });
+  return files
+  // files is an array of File objects.
+
 };
