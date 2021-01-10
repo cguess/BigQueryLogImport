@@ -8,6 +8,7 @@ function listLogFiles() {
   // Lists files in the bucket
   const storage = new Storage();
   console.log(`storage: ${storage}`)
+  console.log(`bucket name: ${bucketName}`)
   const bucket = storage.bucket(bucketName)
   console.log(`bucket: ${bucket}`)
   const [files] = bucket.getFiles();
