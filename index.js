@@ -5,7 +5,7 @@ const bucketName = 'wiscocovidtest'
 
 listLogFiles = () => {
   // Lists files in the bucket
-  const [files] = await storage.bucket(bucketName).getFiles();
+  const [files] = storage.bucket(bucketName).getFiles();
 
   console.log('Files:');
   files.forEach(file => {
