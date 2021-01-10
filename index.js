@@ -20,12 +20,7 @@ async function listLogFiles() {
 exports.loadLogs = (request, response) => {
   listLogFiles().then(files => {
     console.log(`Files: ${files}`);
-    files.forEach(file => {
-      console.log(file.name)
-    });
-    return files
+    console.log(files[0].name)
+    // return files
   })
-
-  // files is an array of File objects.
-
 };
