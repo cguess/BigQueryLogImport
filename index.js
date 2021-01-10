@@ -19,7 +19,7 @@ async function listLogFiles() {
 
 exports.loadLogs = (request, response) => {
 
-  const files = listLogFiles()
+  const files = await listLogFiles()
 
   console.log(`Files: ${files}`);
   files.forEach(file => {
