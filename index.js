@@ -1,3 +1,5 @@
+require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
+
 const escapeHtml = require('escape-html');
 
 /**
