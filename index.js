@@ -4,22 +4,17 @@ const {Storage} = require('@google-cloud/storage');
 
 const bucketName = 'wiscocovidtest'
 
-function listLogFiles() {
+async function listLogFiles() {
   // Lists files in the bucket
   const storage = new Storage();
   console.log(`storage: ${storage}`)
   console.log(`bucket name: ${bucketName}`)
   const bucket = storage.bucket(bucketName)
   console.log(`bucket: ${bucket.constructor.name}`)
-  return bucket.exists().then(function(data) {
-    return bucket.getFiles(function(err, files) {
-      if (!err) {
-        return files
-      } else {
-        console.log(`errors: ${errors}`)
-      }
-    })
-  });
+  const existingBucket = await bucket.exists()
+  const files = await bucket.getFiles()
+
+  return files
 }
 
 exports.loadLogs = (request, response) => {
