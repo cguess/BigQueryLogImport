@@ -20,7 +20,7 @@ async function listLogFiles() {
 exports.loadLogs = (request, response) => {
   listLogFiles().then(files => {
     console.log(`Files: ${files}`);
-    console.log(files[0].name)
+    console.log(`name: ${files[0].name}`)
     // return files
   })
 };
