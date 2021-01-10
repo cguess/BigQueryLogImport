@@ -1,6 +1,8 @@
 require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
 
-const escapeHtml = require('escape-html');
+const {Storage} = require('@google-cloud/storage');
+const storage = new Storage();
+
 const bucketName = 'wiscocovidtest'
 
 function listLogFiles() {
