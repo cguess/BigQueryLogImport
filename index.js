@@ -1,15 +1,19 @@
 require('@google-cloud/debug-agent').start({serviceContext: {enableCanary: true}});
 
 const escapeHtml = require('escape-html');
+const bucketName = 'wiscocovidtest'
 
-/**
- * HTTP Cloud Function.
- *
- * @param {Object} req Cloud Function request context.
- *                     More info: https://expressjs.com/en/api.html#req
- * @param {Object} res Cloud Function response context.
- *                     More info: https://expressjs.com/en/api.html#res
- */
-exports.loadLogs = (req, res) => {
-  res.send(`Hello ${escapeHtml(req.query.name || req.body.name || 'World')}!`);
+listLogFiles = () => {
+  // Lists files in the bucket
+  const [files] = await storage.bucket(bucketName).getFiles();
+
+  console.log('Files:');
+  files.forEach(file => {
+    console.log(file.name);
+  });
+}
+
+exports.loadLogs = (request, response) => {
+  listFiles().catch(console.error);
 };
+
