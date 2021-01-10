@@ -11,6 +11,10 @@ function listLogFiles() {
   console.log(`bucket name: ${bucketName}`)
   const bucket = storage.bucket(bucketName)
   console.log(`bucket: ${bucket.constructor.name}`)
+  bucket.exists().then(function(data) {
+    console.log("YAY! NOt insane")
+  });
+
   const files = bucket.getFiles(function(err, files) {
     if (!err) {
       console.log(files)
@@ -29,4 +33,3 @@ function listLogFiles() {
 exports.loadLogs = (request, response) => {
   listLogFiles().catch(console.error)
 };
-
