@@ -10,7 +10,7 @@ function listLogFiles() {
   console.log(`storage: ${storage}`)
   console.log(`bucket name: ${bucketName}`)
   const bucket = storage.bucket(bucketName)
-  console.log(`bucket: ${bucket}`)
+  console.log(`bucket: ${bucket.constructor.name}`)
   const [files] = bucket.getFiles();
 
   console.log(files)
