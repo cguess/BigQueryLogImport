@@ -24,16 +24,14 @@ async function listLogFiles() {
   return files
 }
 
-async function archiveFiles(fileNames) {
+async function archiveFiles(filename) {
   // Archive all files in the files array into the `archive/` folder
-  fileNames.forEach(async (fileName) => {
-    await storage
-      .bucket(bucketName)
-      .file(fileName)
-      .copy(storage.bucket(bucketName).file(`archive/${fileName}`));
+  await storage
+    .bucket(bucketName)
+    .file(filename)
+    .copy(storage.bucket(bucketName).file(`archive/${filename}`));
 
-    await storage.bucket(bucketName).file(fileName).delete();
-  })
+  await storage.bucket(bucketName).file(filename).delete();
 }
 
 async function createBQDataset() {
@@ -92,8 +90,8 @@ exports.loadLogs = async (request, response) => {
   console.log(`Importing files: ${fileNames}`)
 
   fileNames.forEach(async (fileName) => {
-    await loadJSONFromGCSAutodetect(fileName)
+    loadJSONFromGCSAutodetect(fileName).then(() => {
+      archiveFiles(fileNames)
+    })
   })
-
-  await archiveFiles(fileNames)
 }
