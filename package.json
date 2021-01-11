@@ -3,5 +3,11 @@
     "@google-cloud/debug-agent": "^5.1.3",
     "@google-cloud/storage": "^5.7.1",
     "airbnb": "^0.0.2"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^1.7.1"
+  },
+  "scripts": {
+    "start": "npx functions-framework --target=loadLogs --signature-type=event"
   }
 }

@@ -14,13 +14,13 @@ async function listLogFiles() {
   const existingBucket = await bucket.exists()
   const files = await bucket.getFiles()
 
-  return files
+  return files[0]
 }
 
-exports.loadLogs = (request, response) => {
-  listLogFiles().then(files => {
-    console.log(`Files: ${JSON.stringify(files)}`);
-    // console.log(`name: ${JSON.stringify(files[0])}`)
-    return files
+exports.loadLogs = async (request, response) => {
+  const files = await listLogFiles()
+  console.log(files.length)
+  return files.map((file) => {
+    return file.name
   })
 };

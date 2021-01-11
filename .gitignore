@@ -10,7 +10,8 @@ lerna-debug.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Google credentials for testing
-[a-zA-Z]+-[a-z0-9]+.json
+# This isn't working TODO: fix it
+[\w]+-[\w]+\.json
 
 # Runtime data
 pids
