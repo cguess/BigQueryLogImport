@@ -2,12 +2,14 @@
   "dependencies": {
     "@google-cloud/bigquery": "^5.5.0",
     "@google-cloud/storage": "^5.7.1",
-    "airbnb": "^0.0.2"
+    "airbnb": "^0.0.2",
+    "line-reader": "^0.4.0"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "^1.7.1"
   },
   "scripts": {
     "start": "npx functions-framework --target=loadLogs --signature-type=event"
-  }
+  },
+  "main": "index.js"
 }
